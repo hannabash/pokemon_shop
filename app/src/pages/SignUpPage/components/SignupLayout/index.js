@@ -20,7 +20,8 @@ const SignupPageLayout = ({
    errors,
    handleClick,
    open, 
-   handleClose
+   handleClose,
+   disableButton
 }) => {
    return (
       <Box>
@@ -96,24 +97,15 @@ const SignupPageLayout = ({
                   variant='contained'
                   color='primary'
                   children='SIGN UP'
-                  disabled={
-                     (loginData.email
-                     && loginData.password
-                     && loginData.passwordConfirmation
-                     && loginData.firstName
-                     && loginData.lastName
-                     && loginData.phone
-                     && loginData.gender) === '' 
-                  }
+                  disabled={disableButton}
                >
                </SimpleButton>
             </Box>
             <Box className={classes.inputWrapper}>
                <SimpleLink 
                onClick={handleClick}
-               value='Go to authorization'
-               >
-               </SimpleLink>
+               children='Go to authorization'
+               />
             </Box>
             {errors && <Box className={classes.errorMassage}>{errors}</Box>}
          </form>
@@ -142,6 +134,7 @@ SignupPageLayout.propTypes = {
       })
    ),
    isLoading: PropTypes.bool.isRequired,
+   disableButton: PropTypes.bool.isRequired
 };
 
 

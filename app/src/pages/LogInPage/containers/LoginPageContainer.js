@@ -25,7 +25,7 @@ const LoginPageContainer = () => {
 
    const handleClick = useCallback(() => {
       history.push(ROUTES.SIGNUP_PAGE)
-   })
+   }, [dispatch])
 
    useEffect(() => {
       if (isAuth) {

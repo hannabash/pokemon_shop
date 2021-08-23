@@ -19,8 +19,7 @@ const SimpleButton = ({
          color={color}
          children={children}
          disabled={disabled}
-      >
-      </Button>
+      />
    );
 };
 

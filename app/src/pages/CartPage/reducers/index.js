@@ -28,11 +28,11 @@ const cartPageReducer = handleActions(
          isLoading: false,
          errors: payload.response,
       }),
-      [actions.ADD_CART_REQUEST]: (state) => ({
+      [actions.ADD_ITEM_TO_CART_REQUEST]: (state) => ({
          ...state,
          isLoading: true,
       }),
-      [actions.ADD_CART_SUCCESS]: (state, {payload}) => {
+      [actions.ADD_ITEM_TO_CART_SUCCESS]: (state, {payload}) => {
          return {
             ...state,
             isLoading: false,
@@ -41,7 +41,7 @@ const cartPageReducer = handleActions(
             totalPrice: payload.response.totalPrice,
          }
       },
-      [actions.ADD_CART_FAIL]: (state, {payload}) => ({
+      [actions.ADD_ITEM_TO_CART_FAIL]: (state, {payload}) => ({
          ...state,
          isLoading: false,
          errors: payload.response,
@@ -68,11 +68,11 @@ const cartPageReducer = handleActions(
          isLoading: false,
          errors: payload.response,
       }),
-      [actions.DELETE_CART_REQUEST]: (state) => ({
+      [actions.DELETE_FROM_CART_REQUEST]: (state) => ({
          ...state,
          isLoading: true,
       }),
-      [actions.DELETE_CART_SUCCESS]: (state, {payload}) => {
+      [actions.DELETE_FROM_CART_SUCCESS]: (state, {payload}) => {
          const { cartState, removedItemId } = payload.response;  
          const copy = [...state.itemsList]
          const findItemIndex = copy.findIndex(
@@ -87,7 +87,7 @@ const cartPageReducer = handleActions(
             totalPrice: cartState.totalPrice,
          }
       },
-      [actions.DELETE_CART_FAIL]: (state, {payload}) => ({
+      [actions.DELETE_FROM_CART_FAIL]: (state, {payload}) => ({
          ...state,
          isLoading: false,
          errors: payload.response,

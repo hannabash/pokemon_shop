@@ -23,9 +23,9 @@ const apiCallsMapping = (action) => {
       [signupActions.SIGNUP_REQUEST]: signupAPI.signup,
       [detailsActions.GET_DETAILS_REQUEST]: detailsAPI.getDetails,
       [cartActions.GET_CART_REQUEST]: cartAPI.getCart,
-      [cartActions.ADD_CART_REQUEST]: cartAPI.addCart,
+      [cartActions.ADD_ITEM_TO_CART_REQUEST]: cartAPI.addToCart,
       [cartActions.CHANGE_CART_REQUEST]: cartAPI.changeCart,
-      [cartActions.DELETE_CART_REQUEST]: cartAPI.deleteCart,
+      [cartActions.DELETE_FROM_CART_REQUEST]: cartAPI.deleteFromCart,
       [userActions.GET_ORDER_REQUEST]: userAPI.getUserOrder,
       [userActions.ADD_ORDER_REQUEST]: userAPI.addUserOrder,
    };

@@ -55,9 +55,8 @@ const LoginPageLayout = ({
             <Box className={classes.inputWrapper}>
                <SimpleLink 
                onClick={handleClick}
-               value='Go to registration'
-               >
-               </SimpleLink>
+               children='Go to registration'
+               />
             </Box>
             {errors && <div className={classes.errorMassage}>{errors}</div>}
          </form>

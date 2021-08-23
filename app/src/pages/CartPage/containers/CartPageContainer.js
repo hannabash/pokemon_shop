@@ -14,9 +14,9 @@ const CartPageContainer = () => {
 
    const [
       handleAddPokemonCart, 
-      handleIncrementCart, 
-      handleDecrementCart, 
-      handleDeletePokemon] = useCart();
+      handlePokemonQuantityIncrement, 
+      handlePokemonQuantityDecrement,  
+      handlePokemonDelete] = useCart();
 
    const handleAddOrder = useCallback(
       () => {
@@ -46,16 +46,19 @@ const CartPageContainer = () => {
       window.location.reload();
    };
 
+   const orderHeaders = ['Image', 'Prise', 'Quantity', 'Total price', 'Delete']
+
    return <CartLayout
    isLoading={isLoading}
    totalPrice={totalPrice}
    itemsList={itemsList}
-   handleIncrementCart={handleIncrementCart}
-   handleDecrementCart={handleDecrementCart}
-   handleDeletePokemon={handleDeletePokemon}
+   handlePokemonQuantityIncrement={handlePokemonQuantityIncrement}
+   handlePokemonQuantityDecrement={handlePokemonQuantityDecrement}
+   handlePokemonDelete={handlePokemonDelete}
    handleAddOrder={handleAddOrder} 
    handleClose={handleClose}
    open={open}
+   orderHeaders={orderHeaders}
    />
 };
 

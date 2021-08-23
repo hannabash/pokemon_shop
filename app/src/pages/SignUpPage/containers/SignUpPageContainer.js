@@ -41,7 +41,7 @@ const SignupPageContainer = () => {
    const handleClick = useCallback(() => {
       history.push(ROUTES.LOGIN_PAGE)
       setOpen(true);
-   }, [])
+   }, [dispatch])
 
    useEffect(() => {
       if (isSignup) {
@@ -59,6 +59,15 @@ const SignupPageContainer = () => {
       setOpen(false);
    };
 
+   const disableButton =(
+         formValues.email &&
+         formValues.password &&
+         formValues.passwordConfirmation &&
+         formValues.firstName &&
+         formValues.lastName &&
+         formValues.phone &&
+         formValues.gender) === ""; 
+
    return <SignupPageLayout
    loginData={formValues}
    handleChange={handleChange}
@@ -68,6 +77,7 @@ const SignupPageContainer = () => {
    handleClick={handleClick}
    open={open}
    handleClose={handleClose}
+   disableButton={disableButton}
    />
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {v4 as uuid} from 'uuid';
 import { 
    Box, 
    Button, 
@@ -23,12 +24,13 @@ const CartLayout = ({
    totalPrice,
    classes,
    itemsList,
-   handleIncrementCart, 
-   handleDecrementCart, 
-   handleDeletePokemon, 
+   handlePokemonQuantityIncrement, 
+   handlePokemonQuantityDecrement, 
+   handlePokemonDelete, 
    handleAddOrder,
    handleClose,
    open,
+   orderHeaders
 }) => {
    return (
       <Box>
@@ -44,11 +46,9 @@ const CartLayout = ({
                   <TableHead>
                      <TableRow>
                         <TableCell>Pokemon name</TableCell>
-                        <TableCell className={classes.header} align="right">Image</TableCell>
-                        <TableCell className={classes.header} align="right">Price</TableCell>
-                        <TableCell className={classes.header} align="right">Quantity</TableCell>
-                        <TableCell className={classes.header} align="right">Total price</TableCell>
-                        <TableCell className={classes.header} align="right">Delete</TableCell>
+                        {orderHeaders.map((header) => (
+                           <TableCell key={uuid()} className={classes.header} align="right">{header}</TableCell>
+                        ))}
                      </TableRow>
                   </TableHead>
                   <TableBody>
@@ -59,13 +59,13 @@ const CartLayout = ({
                         <TableCell className={classes.header} align="right">{item.price}</TableCell>
                         <TableCell align="right">
                            <Box className={classes.buttonWrapper}>
-                              <Button onClick={() => handleDecrementCart(item)}>-</Button>
+                              <Button onClick={() => handlePokemonQuantityDecrement(item)}>-</Button>
                               <Box className={classes.header}>{item.quantity}</Box>
-                              <Button onClick={() => handleIncrementCart(item)}>+</Button>
+                              <Button onClick={() => handlePokemonQuantityIncrement(item)}>+</Button>
                            </Box>
                         </TableCell>
                         <TableCell className={classes.header} align="right">{item.price * item.quantity}</TableCell>
-                        <TableCell className={classes.header} align="right"><Button onClick={() => handleDeletePokemon(item.id)} className={classes.red}>DELETE</Button></TableCell>
+                        <TableCell className={classes.header} align="right"><Button onClick={() => handlePokemonDelete(item.id)} className={classes.red}>DELETE</Button></TableCell>
                      </TableRow>
                   ))}
                   </TableBody>
@@ -106,12 +106,13 @@ CartLayout.propTypes = {
          quantity: PropTypes.number,
       })
    ),
-   handleIncrementCart: PropTypes.func.isRequired, 
-   handleDecrementCart: PropTypes.func.isRequired, 
-   handleDeletePokemon: PropTypes.func.isRequired, 
+   handlePokemonQuantityIncrement: PropTypes.func.isRequired, 
+   handlePokemonQuantityDecrement: PropTypes.func.isRequired, 
+   handlePokemonDelete: PropTypes.func.isRequired, 
    handleAddOrder: PropTypes.func.isRequired,
    handleClose: PropTypes.func.isRequired,
    open: PropTypes.bool.isRequired,
+   orderHeaders: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(CartLayout);

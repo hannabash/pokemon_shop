@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 
 
 import {
-   ADD_CART_REQUEST,
+   ADD_ITEM_TO_CART_REQUEST,
    CHANGE_CART_REQUEST, 
-   DELETE_CART_REQUEST, 
+   DELETE_FROM_CART_REQUEST, 
    } from '../pages/CartPage/actions';
 
 export default () => {
@@ -14,34 +14,35 @@ export default () => {
    
    const handleAddPokemonCart = useCallback((pokemon) => {
          const pokemonToAdd = {...pokemon, quantity: 1}
-         dispatch(ADD_CART_REQUEST(pokemonToAdd))
-   }, [dispatch, itemsList]);
-
-   const handleIncrementCart = useCallback((pokemon) => {
-      const quantityIncrement = {id: pokemon.id, quantity: pokemon.quantity +1}
-      dispatch(CHANGE_CART_REQUEST(quantityIncrement));
+         dispatch(ADD_ITEM_TO_CART_REQUEST(pokemonToAdd));
    }, [dispatch]);
 
-   const handleDecrementCart = useCallback((pokemon) => {
+   const handlePokemonQuantityIncrement = useCallback((pokemon) => {
+      const pokemonToUpdate = {id: pokemon.id, quantity: pokemon.quantity +1}
+      dispatch(CHANGE_CART_REQUEST(pokemonToUpdate));
+   }, [dispatch]);
+
+   const handlePokemonQuantityDecrement = useCallback((pokemon) => {
       if (pokemon.quantity !==0) {
-         const quantityDecrement = {
+         const pokemonToUpdate = {
             id: pokemon.id,
             quantity: pokemon.quantity - 1,
          };
-         dispatch(CHANGE_CART_REQUEST(quantityDecrement));
+         dispatch(CHANGE_CART_REQUEST(pokemonToUpdate));
       }
       
    }, [dispatch]);
 
-   const handleDeletePokemon = useCallback((pokemon) => {
-      dispatch(DELETE_CART_REQUEST(pokemon))
+   const handlePokemonDelete = useCallback((pokemon) => {
+      dispatch(DELETE_FROM_CART_REQUEST(pokemon))
    }, [dispatch]);
 
 
-   return [handleAddPokemonCart, 
-      handleIncrementCart, 
-      handleDecrementCart, 
-      handleDeletePokemon,
+   return [
+      handleAddPokemonCart, 
+      handlePokemonQuantityIncrement, 
+      handlePokemonQuantityDecrement, 
+      handlePokemonDelete,
       itemsList
    ];
 };

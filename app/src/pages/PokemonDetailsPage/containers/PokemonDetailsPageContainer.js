@@ -15,9 +15,9 @@ const PokemonDetailsPageContainer = () => {
 
    const [
       handleAddPokemonCart,
-      handleIncrementCart,
-      handleDecrementCart,
-      handleDeletePokemon,
+      handlePokemonQuantityIncrement, 
+      handlePokemonQuantityDecrement, 
+      handlePokemonDelete,
       itemsList,
    ] = useCart();
 

@@ -6,7 +6,7 @@ const MainLayout = ({children}) => {
    const {isAuth} = useSelector((state) => state.auth)
    return (
       <div>
-         {isAuth ? <Header/>: null}
+         {isAuth && <Header/>}
          <div>
             {children}
          </div>
